@@ -1,36 +1,58 @@
+# Yerim Dia
+# November 2, 2018
+# Introduction to Computer Science
+
 def user_choice():
+    """
+    This function gets the choice from the user either to encode, decode or to quit the program
+    :return: It returns the user choice either by 'e', 'd', or 'q'
+    """
     while True:
         user_choice = input("Press 'e' to encode, 'd' to decode, or 'q' to quit:")
-        if user_choice == 'e' or user_choice == 'd':
-            break
-        elif user_choice == 'q':
-            print("See you later then")
-            break
-    return user_choice
+        if user_choice == 'e' or user_choice == 'd' or user_choice == 'q':
+            return user_choice
+
 
 def user_phrase():
     user_phrase = input("What phrase do you want to use:")
     return user_phrase
 
-def index():
-
-
 
 def main():
-    user_choice()
-    key = int(input("By what key between (0-24) do you want to shift:"))
-    alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    first = alphabet[key:]
-    last = alphabet[0:key]
-    final = first + last
-    print(final)
+    choice = user_choice()
     phrase = user_phrase()
-    for x in phrase:
-        index = alphabet.index(x)
-        new_letter = final[index]
-        encoded_phrase = encoded_phrase + new_letter
-
-
+    if choice == 'e':
+        key = int(input("By what key between (0-24) do you want to shift:"))
+        alphabet = 'abcdefghijklmnopqrstuvwxyz'
+        first = alphabet[key:]
+        last = alphabet[0:key]
+        final = first + last
+        encoded = ""
+        for x in phrase:
+            if x == " ":
+                encoded = encoded + " "
+            else:
+                bet = alphabet.index(x)
+                end = final[bet]
+                encoded = encoded + end
+        print(encoded)
+    elif choice == 'd':
+            key = int(input("By what key between (0-24) do you want to shift:"))
+            alphabet = 'abcdefghijklmnopqrstuvwxyz'
+            first = alphabet[key:]
+            last = alphabet[0:key]
+            final = first + last
+            decoded = ""
+            for x in phrase:
+                if x == " ":
+                    decoded = decoded + " "
+                else:
+                    bet = final.index(x)
+                    end = alphabet[bet]
+                    decoded = decoded + end
+            print(decoded)
+    elif choice == 'q':
+        print("See you later")
 
 
 main()
