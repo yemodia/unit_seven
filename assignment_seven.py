@@ -1,6 +1,9 @@
 # Yerim Dia
 # November 2, 2018
 # Introduction to Computer Science
+#  This program is based on the rotation cipher. It re-sequences the alphabet depending on the desired shift.
+# This program allows the user to either decode or encode a word or phrase or to quit the program
+
 
 def user_choice():
     """
@@ -14,14 +17,19 @@ def user_choice():
 
 
 def user_phrase():
+    """
+    This function gets the phrase that the user wants
+    :return: It returns the user's desired phrase as a string
+    """
     user_phrase = input("What phrase do you want to use:")
     return user_phrase
 
 
 def main():
     choice = user_choice()
-    phrase = user_phrase()
+
     if choice == 'e':
+        phrase = user_phrase()
         key = int(input("By what key between (0-24) do you want to shift:"))
         alphabet = 'abcdefghijklmnopqrstuvwxyz'
         first = alphabet[key:]
@@ -37,11 +45,13 @@ def main():
                 encoded = encoded + end
         print(encoded)
     elif choice == 'd':
+
             key = int(input("By what key between (0-24) do you want to shift:"))
             alphabet = 'abcdefghijklmnopqrstuvwxyz'
             first = alphabet[key:]
             last = alphabet[0:key]
             final = first + last
+            phrase = user_phrase()
             decoded = ""
             for x in phrase:
                 if x == " ":
